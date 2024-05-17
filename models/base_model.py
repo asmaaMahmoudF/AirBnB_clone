@@ -20,7 +20,7 @@ class BaseModel:
         temp["created_at"] = self.created_at.isoformat()
         temp["updated_at"] = self.updated_at.isoformat()
         temp["__class__"] = type(self).__name__
-        return 
+        return temp
     def __str__(self):
         return "[{}] ({}) {}".format(type(self).__name__,self.id, self.__dict__)
 
