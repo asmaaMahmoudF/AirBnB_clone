@@ -16,10 +16,11 @@ class BaseModel:
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        temp = {**self.__dict__}
+        """to dictionary function """
+        temp = self.__dict__.copy()
         temp["created_at"] = self.created_at.isoformat()
         temp["updated_at"] = self.updated_at.isoformat()
-        temp["__class__"] = type(self).__name__
+        temp["__class__"] = self.__class__.__name__
         return temp
     def __str__(self):
         return "[{}] ({}) {}".format(type(self).__name__,self.id, self.__dict__)
