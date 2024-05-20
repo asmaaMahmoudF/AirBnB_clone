@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_destroy(self, arg):
-       pass
+        pass
 
     def do_all(self, arg):
         pass
