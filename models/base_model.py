@@ -3,39 +3,27 @@ from datetime import datetime
 from uuid import uuid4
 import models
 
-storage = models.storage
-
-
 class BaseModel:
     """The base model class is the main class"""
 
     def __init__(self, *args, **kwargs):
-        """The initialization method"""
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        self.id = str(uuid4())
-
+        """The initializtion method"""
         if kwargs:
             for key, value in kwargs.time():
                 if key != __class__:
                     setattr(self, key, value)
-            if "created_at" or "updated_at" in kwargs:
+            if created_at or updated_at in kwargs:
                 self.created_at = \
                     datetime.\
                     strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
                 self.updated_at = \
                     datetime.\
                     strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
-<<<<<<< HEAD
         else:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid4())
             models.storage.new(self)
-=======
-
-        storage.new(self)
->>>>>>> c955db8f56156f854e9aa4ceb523dbd9899ca00b
 
     def save(self):
         """Update the time of instance creation"""
