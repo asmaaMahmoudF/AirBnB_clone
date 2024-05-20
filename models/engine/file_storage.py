@@ -1,9 +1,10 @@
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage:
     """The storage engine in AirBnB project"""
-    
+
     __file_path: str = "file.json"
     __objects: dict = {}
 
@@ -29,7 +30,8 @@ class FileStorage:
             json.dump(temp, json_file)
 
     def reload(self):
-        """This method will deserialize the JSON string to a Python dictionary"""
+        """This method will deserialize the JSON
+        string to a Python dictionary"""
         try:
             with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
                 new_obj_dict = json.load(f)
