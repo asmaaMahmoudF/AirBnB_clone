@@ -23,13 +23,13 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid4())
-        storage.new
+            models.storage.new(self)
 
     def save(self):
         """Update the time of instance creation"""
 
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """A function to collect the needed data and put them into dic

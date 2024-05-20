@@ -1,29 +1,45 @@
 import json
+from models.base_model import BaseModel
 
 class FileStorage:
     """The storage engine in AirBnB project"""
     
-    __file_path = "file.json"
-    __ojbects
+    __file_path: str = "file.json"
+    __objects: dict = {}
+
+    def __init__(self):
+        """The initialization method (Constructor)"""
+        pass
 
     def all(self):
-        """Return the dictionary ojbects"""
-
-        return __ojbects
+        """Return the dictionary objects"""
+        return FileStorage.__objects
 
     def new(self, obj):
-        """sets in the __objects dictionary"""
-
-        setattr(__ojbects, type(obj).__name__.id, obj)
+        """Sets in the __objects dictionary"""
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        FileStorage.__objects[key] = obj
 
     def save(self):
-        """This method will serialize the __objects to json string"""
-
-        json.dump(__ojbects,__file_path)
+        """Serializes objects stored and persists in file"""
+        temp = {}
+        for key, obj in FileStorage.__objects.items():
+            temp[key] = obj.to_dict()
+        with open(FileStorage.__file_path, "w") as json_file:
+            json.dump(temp, json_file)
 
     def reload(self):
-        """This method will deserialize the Json string to py dict"""
-
-        if __file_path:
-            __objects = json.load(__file_path)
-
+        """This method will deserialize the JSON string to a Python dictionary"""
+        try:
+            with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
+                new_obj_dict = json.load(f)
+                for key, value in new_obj_dict.items():
+                    cls_name = key.split('.')[0]
+                    if cls_name == 'BaseModel':
+                        obj = BaseModel(**value)
+                    # Add similar conditionals for other classes as needed
+                    FileStorage.__objects[key] = obj
+        except FileNotFoundError:
+            pass
+        except json.JSONDecodeError:
+            pass
