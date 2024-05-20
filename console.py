@@ -1,11 +1,38 @@
 #!/usr/bin/python3
+'''
+    implementing the console class
+'''
 
 import cmd
+import models
+
+import cmd
+from models import storage
+from models.base_model import BaseModel
+from models.state import State
+from models.review import Review
+from models.city import City
+from models.amenity import amenity
+from models.place import Place
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
      
     prompt = '(hbnb)'
- 
+
+    classes = {"BaseModel": BaseModel,
+        "User": User, 
+        "Place": Place, 
+        "State": State,
+        "City": City, 
+        "Amenity": amenity, 
+        "Review": Review,
+        "State": State,
+        "City": City,
+}
+
+    def do_create(self, arg):
+        return True
     def do_quit(self, arg):
         return True
 
