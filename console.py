@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         'City': City,
     }
 
-    def do_create(self, arg):
+    def do_update(self, arg):
         return True
 
     def do_quit(self, arg):
@@ -49,7 +49,9 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        pass
+        '''Creates a new instance of BaseModel, saves it'''
+        
+        print("** class name missing **")
 
     def do_show(self, arg):
         pass
