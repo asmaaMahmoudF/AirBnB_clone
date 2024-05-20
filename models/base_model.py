@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 from datetime import datetime
 from uuid import uuid4
-
+import models
 
 class BaseModel:
     """The base model class is the main class"""
 
     def __init__(self, *args, **kwargs):
-
+        """The initializtion method"""
         if kwargs:
             for key, value in kwargs.time():
                 if key != __class__:
@@ -23,11 +23,13 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid4())
+        storage.new
 
     def save(self):
         """Update the time of instance creation"""
 
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """A function to collect the needed data and put them into dic
