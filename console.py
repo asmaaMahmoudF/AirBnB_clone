@@ -4,9 +4,6 @@
 '''
 
 import cmd
-import models
-
-import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.state import State
@@ -50,8 +47,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         '''Creates a new instance of BaseModel, saves it'''
-        
-        print("** class name missing **")
+        args_list = args.split()
+        if len(args_list) > 1:
+            print(f"unknown number of args {args}")
+            print(f"Usage: create <class-name>")
+        elif len(args_list) == 0:
+            print('** class name missing **')
+        elif args_list[0] not in classes.keys():
+            print('** class doesn\'t exist **')
+        else:
+            instance = classes[args_list[0]]()
+            print(instance.id)
+            instance.save()
 
     def do_show(self, arg):
         pass
