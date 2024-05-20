@@ -13,7 +13,7 @@ from models.state import State
 
 class FileStorage:
     """The storage engine in AirBnB project"""
-    
+
     __file_path = "file.json"
     __objects = {}
 
@@ -30,11 +30,10 @@ class FileStorage:
     def save(self):
         """This method will serialize the __objects to json string"""
 
-        json.dump(__objects,__file_path)
+        json.dump(__objects, __file_path)
 
     def reload(self):
         """This method will deserialize the Json string to py dict"""
 
         if __file_path:
             __objects = json.load(__file_path)
-

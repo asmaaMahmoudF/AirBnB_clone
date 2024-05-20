@@ -16,27 +16,33 @@ from models.amenity import amenity
 from models.place import Place
 from models.user import User
 
+
 class HBNBCommand(cmd.Cmd):
-     
+    """Simple command processor.  """
+
     prompt = '(hbnb)'
 
-    classes = {"BaseModel": BaseModel,
-        "User": User, 
-        "Place": Place, 
-        "State": State,
-        "City": City, 
-        "Amenity": amenity, 
-        "Review": Review,
-        "State": State,
-        "City": City,
-}
+    classes = {
+        'BaseModel': BaseModel,
+        'User': User,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review,
+        'State': State,
+        'City': City,
+    }
 
     def do_create(self, arg):
         return True
+
     def do_quit(self, arg):
+        '''Quit command to exit the program'''
         return True
 
     def do_EOF(self, arg):
+        '''exit the cmd iteration'''
         return True
 
     def emptyline(self):
@@ -52,7 +58,8 @@ class HBNBCommand(cmd.Cmd):
        pass
 
     def do_all(self, arg):
-        pass 
+        pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
