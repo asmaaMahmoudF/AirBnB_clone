@@ -9,6 +9,10 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """The initialization method"""
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.id = str(uuid4())
+
         if kwargs:
             for key, value in kwargs.time():
                 if key != __class__:
@@ -20,11 +24,7 @@ class BaseModel:
                 self.updated_at = \
                     datetime.\
                     strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
-        else:
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            self.id = str(uuid4())
-            models.storage.new(self)
+
 
     def save(self):
         """Update the time of instance creation"""
@@ -43,5 +43,4 @@ class BaseModel:
 
     def __str__(self):
         """overriding the __str__ method to print specific format"""
-        return \
-            "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
