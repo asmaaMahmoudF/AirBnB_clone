@@ -8,13 +8,12 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """The initialization method"""
-
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        self.id = str(uuid4())
 
         if kwargs:
-            for key, value in kwargs.time():
+            for key, value in kwargs.items():
                 if key != __class__:
                     setattr(self, key, value)
             if "created_at" or "updated_at" in kwargs:
