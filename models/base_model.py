@@ -38,4 +38,4 @@ class BaseModel:
 
     def __str__(self):
         """overriding the __str__ method to print specific format"""
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return f"{self.__class__.__name__} ({self.id}) {self.__dict__}"
