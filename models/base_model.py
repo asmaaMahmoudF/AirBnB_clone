@@ -25,7 +25,7 @@ class BaseModel:
     def save(self):
         """Update the time of instance creation"""
 
-        self.updated_at = datetime.t()
+        self.updated_at = datetime.now()
         models.storage.save()
     def to_dict(self):
         """A function to collect the needed data and put them into dic
