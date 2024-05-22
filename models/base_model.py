@@ -9,8 +9,8 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """The initialization method"""
         self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
 
         if kwargs:
             for key, value in kwargs.items():
