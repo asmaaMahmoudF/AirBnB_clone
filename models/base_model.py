@@ -3,9 +3,9 @@ from datetime import datetime
 from uuid import uuid4
 import models
 
+
 class BaseModel:
     """The base model class is the main class"""
-
     def __init__(self, *args, **kwargs):
         """The initialization method"""
         self.id = str(uuid4())
@@ -17,8 +17,10 @@ class BaseModel:
                 if key != __class__:
                     setattr(self, key, value)
             if "created_at" or "updated_at" in kwargs:
-                self.created_at = datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
-                self.updated_at = datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                self.created_at = datetime.strptime(
+                    kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                self.updated_at = datetime.strptime(
+                    kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
 
     def save(self):
         """Update the time of instance creation"""
@@ -37,4 +39,5 @@ class BaseModel:
 
     def __str__(self):
         """overriding the __str__ method to print specific format"""
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(type(self).
+                                     __name__, self.id, self.__dict__)
