@@ -16,16 +16,16 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != __class__:
                     setattr(self, key, value)
-                if "created_at" or "updated_at" in kwargs:
-                    self.created_at = datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
-                    self.updated_at = datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+            if "created_at" or "updated_at" in kwargs:
+                self.created_at = datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                self.updated_at = datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
         else:
             models.storage.new(self)
 
     def save(self):
         """Update the time of instance creation"""
 
-        self.updated_at = datetime.today()
+        self.updated_at = datetime.t()
         models.storage.save()
     def to_dict(self):
         """A function to collect the needed data and put them into dic
