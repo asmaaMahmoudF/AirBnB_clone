@@ -34,7 +34,7 @@ class BaseModel:
         temp = {**self.__dict__}
         temp["created_at"] = self.created_at.isoformat()
         temp["updated_at"] = self.updated_at.isoformat()
-        temp["__class__"] = self.__class__.__name__
+        temp["__class__"] = type(self).__name__
         return temp
 
     def __str__(self):
