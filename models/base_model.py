@@ -31,7 +31,7 @@ class BaseModel:
         """A function to collect the needed data and put them into dic
         by making a copy of __dict__ using {**self}"""
 
-        temp = {**self.__dict__}
+        temp = self.__dict__.copy()
         temp["created_at"] = self.created_at.isoformat()
         temp["updated_at"] = self.updated_at.isoformat()
         temp["__class__"] = type(self).__name__
