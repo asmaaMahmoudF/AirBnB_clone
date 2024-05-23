@@ -51,13 +51,14 @@ class HBNBCommand(cmd.Cmd):
         '''create a new instance of BaseModel'''
         arg = arg.split()
         classes = {
-        'BaseModel': base_model.BaseModel,
-        'User': user.User,
-        'City': city.City,
-        'Amenity': amenity.Amenity,
-        'Place': place.Place,
-        'Review': review.Review,
-        'State': state.State
+            'BaseModel': BaseModel,
+            "User": User,
+            'Place': Place,
+            'State': State,
+            'City': City,
+            'Review': Review,
+            'State': State,
+            'City': City,
         }
         if len(arg) == 0:
             print("** class name missing **")
@@ -73,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in classes.keys():
+        elif arg[0] not in HBNBCommand.classes.keys():
             print("** class doesn\'t exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -88,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in classes.keys():
+        elif arg[0] not in HBNBCommand.classes.keys():
             print("** class doesn\'t exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -104,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in classes.keys():
+        elif arg[0] not in HBNBCommand.classes.keys():
             print("** class doesn\'t exist **")
         else:
             print([str(obj) for obj in models.storage.all().values()
@@ -114,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in classes.keys():
+        elif arg[0] not in HBNBCommand.classes.keys():
             print("** class doesn\'t exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
