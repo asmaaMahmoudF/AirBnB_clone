@@ -21,19 +21,17 @@ class BaseModel:
                     kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
                   self.updated_at = datetime.strptime(
                     kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
-        models.storage.new(self)
 
     def save(self):
         """Update the time of instance creation"""
 
         self.updated_at = datetime.today()
-        models.storage.save()
+
     def to_dict(self):
         """A function to collect the needed data and put them into dic
         by making a copy of __dict__ using {**self}"""
 
         temp = self.__dict__.copy()
-        temp["__class__"] = self.__class__.__name__
         temp["created_at"] = self.created_at.isoformat()
         temp["updated_at"] = self.updated_at.isoformat()
         return temp
