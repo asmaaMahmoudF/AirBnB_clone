@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.review import Review
+from models.amenity import Amenity
+from models.place import Place
 
 
 class FileStorage:
@@ -33,16 +39,23 @@ class FileStorage:
     def reload(self):
         """This method will deserialize the JSON
         string to a Python dictionary"""
-        try:
-            with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
-                new_obj_dict = json.load(f)
-                for key, value in new_obj_dict.items():
-                    cls_name = key.split('.')[0]
-                    if cls_name == 'BaseModel':
-                        obj = BaseModel(**value)
-                    # Add similar conditionals for other classes as needed
-                    FileStorage.__objects[key] = obj
-        except FileNotFoundError:
-            pass
-        except json.JSONDecodeError:
-            pass
+        current_classes = {'BaseModel': BaseModel, 'User': User,
+                           'Amenity': Amenity, 'City': City, 'State': State,
+                           'Place': Place, 'Review': Review}
+        if not os.path.exists(FileStorage.__file_path):
+            return
+
+        with open(FileStorage.__file_path, 'r') as f:
+            deserialized = None
+
+            try:
+                deserialized = json.load(f)
+            except json.JSONDecodeError:
+                pass
+
+            if deserialized is None:
+                return
+
+            FileStorage.__objects = {
+                k: current_classes[k.split('.')[0]](**v)
+                for k, v in deserialized.items()}
