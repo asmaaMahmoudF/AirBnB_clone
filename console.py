@@ -20,12 +20,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
 
     classes = {
-        'BaseModel': BaseModel,
-        'User': User,
+        'BaseModel': BaseModel.BaseModel,
+        "User": User,
         'Place': Place,
         'State': State,
         'City': City,
-        'Amenity': Amenity,
+        'Amenity':amenity.Amenity,
         'Review': Review,
         'State': State,
         'City': City,
@@ -47,7 +47,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         '''Creates a new instance of BaseModel, saves it'''
-        args_list = args.split()
+        args_list = arg.split()
+        classes = {
+        'BaseModel': BaseModel.BaseModel,
+        "User": User,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity':amenity.Amenity,
+        'Review': Review,
+        'State': State,
+        'City': City
+       }
         if len(args_list) > 1:
             print(f"unknown number of args {args}")
             print(f"Usage: create <class-name>")
@@ -61,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             instance.save()
 
     def do_show(self, arg):
-        pass
+        return True
 
     def do_destroy(self, arg):
         pass
@@ -69,6 +80,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         pass
 
+    def do_help(self, arg):
+        return super().do_help(arg)
+
+    def help_EOF(self):
+        print("EOF signal to exit the program.")
+
+    def help_quit(self):
+        print("Quit command to exit the program.")   
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
