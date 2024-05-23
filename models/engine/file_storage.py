@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 import json
 from models.base_model import BaseModel
-
+from models import storage
 
 class FileStorage:
     """The storage engine in AirBnB project"""
